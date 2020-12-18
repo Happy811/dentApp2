@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:dentApp2"
+             x:Class="dentApp2.Views.NewItemPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="cancel.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem Text="Save" Clicked="Save_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="save.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="20" Padding="15">
+                <Label Text="Date" FontSize="Large" />
+                <DatePicker MinimumDate="01/01/2020"
+                            MaximumDate="01/01/2025" Format="dd'.'MM'.'yyyy"
+                            Date="{Binding Item.DateTime}" />
+                <Label Text="Hour" FontSize="Large" />
+                <TimePicker Time="{Binding SelectedTime}" Format="HH:mm"/>
+                <Label Text="Doctor" FontSize="Large" />
+                <Entry Text="{Binding Item.DentistName}" FontSize="Medium"/>
+                <Label Text="Type of surgery" FontSize="Large" />
+                <Picker ItemsSource="{Binding Source={x:Static local:Models.TreatmentTypes.Array}}" Title="Type of surgery"
+                        SelectedItem="{Binding Item.TreatmentType}"/>
+                <Label Text="Desc" FontSize="Large" />
+                <Editor Text="{Binding Item.Description}" FontSize="Medium" Margin="0" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
